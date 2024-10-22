@@ -1,0 +1,46 @@
+<!--Name:Javone-Anthony Gordon-->
+<!--ID: 2206126-->
+<!--Date: Oct 18, 2024-->
+<!--Description: Web Programming Assignment 2 - Error Page-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Error Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Sets the viewport to the device's width for responsive design -->
+    <style>
+
+        body { /* Body Styles*/
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+        .error-container { /* Error container/box styles*/
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;            
+            border: solid red;
+        }
+        
+        /* General Styles*/
+        h1 { 
+            color: red;
+        }
+        p {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1>Access Denied!</h1>
+        <p>You have exceeded the maximum number of login attempts.</p>
+        <p>Please try again.</p>
+        <a href="Login.html" style="color: rgb(42, 124, 211);"><b>Back to Login</b></a> <!--Brings user back to the login page-->
+    </div>
+</body>
+</html>

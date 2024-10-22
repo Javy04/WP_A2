@@ -1,0 +1,521 @@
+<!--Name:Javone-Anthony Gordon-->
+<!--ID: 2206126-->
+<!--Date: Oct 19, 2024-->
+<!--Description: Web Programming Assignment 2 - Products Page-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Products</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Sets the viewport to the device's width for responsive design -->
+    <style>
+
+         /* Global styles for the product sections */
+         .console-section {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px;
+            border: solid  black;           
+        }
+        .console-header {
+            font-size: xx-large;
+            color: rgb(42, 124, 211);
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 10px ;
+            border: 5px solid  rgb(42, 124, 211);
+            padding: 20px;
+            max-width: 150px;         
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Three columns */
+            grid-gap: 20px; /* Gap between the boxes */            
+        }        
+        .product-box {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;    
+            border: solid  rgb(42, 124, 211);        
+        }
+
+        /* Media query to ensure visual stablity across different device types; not needed for every page; viewport at the top is need however */
+        @media screen and (max-width: 1000px) {
+            .product-grid {
+                grid-template-columns: 1fr; /* Changes to a single column layout */
+            }
+
+            .product-box {
+                width: auto; /* Ensures that the boxes fill the width */
+            }
+    
+         }
+         
+         /* Product styles cont'd */
+        .product-box img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+           /* border: solid  black; */
+        }
+
+        .product-box button {
+            background-color: rgb(42, 124, 211);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .product-box button:hover {
+            background-color: rgb(62, 144, 231);
+        }
+        
+        .product-box-quantity {
+            border: 2px solid rgb(42, 124, 211); 
+            border-radius: 5px;
+            padding: 8px;
+            width: 70px; 
+            text-align: center;
+        }
+        .product-box ul{
+            list-style-type: disc;            
+            margin: 10px; 
+            text-align: left; 
+        }
+        .product-box ul li {
+            margin: 5px 0;
+        }
+        
+        /*Global styles for checkout section*/
+        .checkout-button {
+            background-color:  rgb(42, 124, 211);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        .cancel-button { /* Cancel button styles */
+            background-color: white; 
+            color: black;
+            border: 1px solid  rgb(42, 124, 211); 
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        .exit-button {  /* Exit button styles */
+            background-color: red; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        
+        .checkout-button:hover {
+            background-color:  rgb(5, 53, 105);
+        }
+
+        .cancel-button:hover {
+            background-color: lightgray;
+        }
+
+        .exit-button:hover {
+            background-color: darkred;
+        }
+        .checkout-section {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 30px;
+            margin: auto;
+            border: solid  black;           
+        }
+        .checkout-grid {
+            display:grid;
+            grid-template-columns: repeat(3, 1fr); /* Three columns */
+            grid-gap: 20px; /* Gap between the boxes */            
+        }
+        
+        /* Invoice styles */
+        .invoice {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+            border: solid rgb(42, 124, 211);
+            text-align: center;
+        }
+
+        footer {/* footer styles */
+            background-color: rgb(42, 124, 211);  
+            color: #fff;  
+            text-align: center;  
+            padding: 20px;  
+            position: relative;
+            border-radius: 35px;  
+            width: auto;
+            margin: 0 20px;
+            
+        }
+
+        .footer-content p {
+            color: #f2f2f2;
+            margin: 0px;
+        }
+
+        .footer-content a {
+            color: rgb(6, 10, 237); 
+            text-decoration: none;
+        }
+
+        .footer-content a:hover {
+            text-decoration: underline;  /* Underline on hover */
+        }
+
+    </style>
+
+    <script>
+        const products = [ //Global Array to keep track of quantity
+            //Playstation
+            { name: "PlayStation 5 Slim Disc Version", price: 90000, qty: 0 }, //array 0
+            { name: "PlayStation 5 Slim Digital", price: 75000, qty: 0 },    //array 1 and so forth
+            { name: "PlayStation 4 Pro", price: 45000, qty: 0 },
+            { name: "PlayStation 5 Controller", price: 12000, qty: 0 },
+            { name: "PlayStation 4 Controller", price: 9500, qty: 0 },
+            
+            //Xbox
+            { name: "Xbox Series X", price: 80000, qty: 0 },
+            { name: "Xbox Series S", price: 50000, qty: 0 },    
+            { name: "Xbox Series X/S Controller", price: 12000, qty: 0 },        
+            
+            //Nintendo
+            { name: "Nintendo Switch", price: 45000, qty: 0 },
+            { name: "Nintendo Switch OLED", price: 60000, qty: 0 },
+            { name: "Nintendo Switch Joycons", price: 7500, qty: 0 },    
+        ];
+
+        let subTotal = 0;
+        const tax = 0.15; //15% tax on items
+        const disc = 0.10; //10% discount on all items if buying 2 or more items
+        const discmet = 2; //Min num of items need for a discount
+
+        function updateQuantity(index,qty) //function to update quantity
+        {
+            products[index].qty = parseInt(qty);//Saves the quantity             
+        }
+
+        function addToCart(index) { //function to add product of x quantity to cart
+            if (products[index].qty > 0) 
+            {
+                alert(`${products[index].qty} x ${products[index].name} added to Cart.`);
+                updateInvoice();
+                //NB - for alerts use `backtick ` when embedding variables , 'single quotes' treats everything as plain text 
+            }
+            else
+            {
+                alert('Please select a quantity before adding to the cart!');
+            }
+        }
+
+        function updateInvoice() //function to update the invoice data - needed for other functions to work as well
+        {
+            subTotal = 0;
+            let itemCount = 0;
+            let invoiceContent = "<h3>Cart</h3>";
+            invoiceContent += "<ul>";
+            
+            for(const product of products) //product will take the data that is in products so product will equal (PS5, Cost, etc basically)
+        {
+            if (product.qty > 0) {
+                const productTotal = product.price * product.qty;    
+                invoiceContent += `<li>${product.qty} x ${product.name} - $${productTotal.toFixed(2)}</li>`;            
+                subTotal += productTotal; 
+                itemCount += product.qty; // Update itemCount for discount check
+            }
+        }
+            //Discount
+            let discount =0;
+            if (itemCount >= discmet)
+            {
+                discount = subTotal * disc;
+            }
+            const taxAmount = (subTotal - discount) * tax;
+            const total = subTotal - discount + taxAmount;
+
+            // Appends invoice details to the content, allowing the user to view the subtotal, discount, tax, and total amounts
+            invoiceContent += `</ul><strong>Subtotal: $${subTotal.toFixed(2)}</strong><br>`;
+            invoiceContent += `Discount: -$${discount.toFixed(2)}<br>`;
+            invoiceContent += `Tax (15%): $${taxAmount.toFixed(2)}<br>`;
+            invoiceContent += `<strong>Total: $${total.toFixed(2)}</strong><br>`;
+            invoiceContent += `<strong>10% Discount if buying 2 or more items!</strong><br>`;
+
+
+            document.getElementById("invoice").innerHTML = invoiceContent; // Updates the invoice element with the generated invoice content
+
+            // Store calculated values in sessionStorage to access on the invoice page
+            sessionStorage.setItem("subTotal", subTotal);
+            sessionStorage.setItem("discount", discount);
+            sessionStorage.setItem("totalTax", taxAmount);
+            sessionStorage.setItem("total", total);        
+
+        }
+
+        function cancelAction()//function to clear the cart
+        {
+            if (confirm("Do you want to clear the cart?"))
+            {
+                for (const product of products)
+                {
+                    product.qty =0;
+                }
+                alert('The cart has been cleared!');
+                updateInvoice(); 
+            }
+        }
+
+        window.onload = function()// This function automatically runs when the window is loaded
+        {
+            updateInvoice();
+        }
+
+        function exitAction() {//redirect the user to login page if clicked
+        const confirmation = confirm("You will redirected to the Login page if you exit!");
+        if (confirmation) {
+            window.location.href = 'Login.html'; //Only way to access back the login oage without going back a page
+        }
+        }
+
+        function checkOut() {
+            if(confirm("Do you wish to checkout your cart? If yes, you will be brought to the invoice page."))
+            {
+                // Store the invoice data from the "invoice" div to local storage
+                const invoiceData = document.getElementById("invoice").innerHTML;
+                localStorage.setItem("invoiceData", invoiceData);
+                
+                // Redirect to the invoice page
+                window.location.href = "Invoice.html"; // Change this to your invoice page URL
+            }
+
+        }
+
+    </script>
+
+</head>
+<body style="background-image: url('../Assets/Background2.jpg'); background-size: cover; background-attachment: fixed; margin: 0; padding: 0;"> <!--Background image-->
+
+    <div style="background-color: rgba(0, 0, 0, 0.8); padding: 10px; text-align: center; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; height: auto; display: flex; align-items: center; justify-content: space-between; border-radius: 0; flex-wrap: wrap;">
+        
+        <div style="display: flex; align-items: center;"> <!--Header-->
+            <img src="../Assets/Logo.png" alt="Logo" style="max-height: 60px; margin-left: 20px; border-radius: 50px;"> 
+            <h1 style="font-size: xx-large; color: white; margin: 0; margin-left: 10px;">GAME DOMAIN</h1>
+        </div>
+
+        <div style="align-items: center;"> <!--headings-->
+            <a href="Products.html" style="font-size: large; color: rgb(42, 124, 211); text-decoration: underline; margin: 30px;"><b>PRODUCTS</b></a>
+            <a href="Invoice.html" style="font-size: large; color: rgb(42, 124, 211); text-decoration: none; margin: 30px;"><b>INVOICE</b></a>
+            <a href="About Us.html" style="font-size: large; color: rgb(42, 124, 211); text-decoration: none; margin: 0 10px;"><b>ABOUT US</b></a>
+        </div>
+    </div>
+
+
+    <div style="margin-top: 20px; padding: 20px;"></div>
+    <div style="margin-top: 80px; text-align: center; color: white;">
+        <center>
+             <video src="../Assets/Consoledefault.mp4" 
+            loop muted autoplay
+            height="60%" width="70%"
+            style="border: 5px solid rgb(12, 178, 234) ; border-radius: 10px;"
+            ></video>
+        </center><br>
+    </div>
+
+    <div style="margin-top: 0px; padding: 20px;">
+    
+    <!--PlayStation section-->
+    <div class="console-section">
+       <center> <div class="console-header">Playstation</div></center>
+        <div class="product-grid">
+            <div class="product-box">
+                <img src="../Assets/ps5disc.jpeg" alt="PS5 Disc">
+                <h3>PlayStation 5 Slim Disc Version</h3>
+                <p>$90,000.00</p>
+                <ul> <!--console/accessory details-->
+                    <li>Storage: 825GB SSD</li>
+                    <li>Media Type: Disc/Digital</li>
+                    <li>Resolution: 1080P HD, 4K UHD 120FPS</li>                   
+                </ul>
+                <input type="number" min="1" placeholder="Quantity" class="product-box-quantity" onchange="updateQuantity(0, this.value)"> <!--Updates the quantity based on the amount specified by the user-->
+                <button onclick="addToCart(0)">Add to Cart</button> <!-- On click, the addToCart function adds the details of the first item in the array to the cart; for subsequent versions of this the array index is increased to match the data being added, so 1-10-->
+            </div>
+        
+            <div class="product-box">
+                <img src="../Assets/ps5.jpg" alt="PS5 Digital">
+                <h3>PlayStation 5 Slim Digital Edition</h3>
+                <p>$75,000.00</p>
+                <ul>
+                    <li>Storage: 825GB SSD</li>
+                    <li>Media Type: Digital</li>
+                    <li>Resolution: 1080P HD, 4K UHD 120FPS</li>
+                </ul>
+                <input type="number" min="1" placeholder="Quantity" class="product-box-quantity" onchange="updateQuantity(1, this.value)">
+                <button onclick="addToCart(1)">Add to Cart</button>
+            </div>
+
+            <div class="product-box">
+                <img src="../Assets/ps4.jpeg" alt="PS4">
+                <h3>PlayStation 4 Pro </h3>
+                <p>$45,000.00</p>
+                <ul>
+                    <li>Storage: 500 GB HDD</li>
+                    <li>Media Type: Disc/Digital</li>
+                    <li>Resolution: 1080P HD, 4K UHD 30FPS</li>
+                </ul>
+                <input type="number" min="1" placeholder="Quantity" class="product-box-quantity" onchange="updateQuantity(2, this.value)">
+                <button onclick="addToCart(2)">Add to Cart</button>
+            </div>
+
+            <div class="product-box">
+                <img src="../Assets/ps5controller.jpeg" alt="PS5 Controller">
+                <h3>PlayStation 5 Controller</h3>
+                <p>$12,000.00</p>
+                <ul>
+                    <li>Power/Charge: Internal Battery/USB C </li>
+                    <li>Features: Adaptive Triggers, Gyro, TouchPad, Rumble, Bluetooth</li>
+                    <li>Native Connectivity: PS5, PS4, Windows, Android/IOS</li>
+                </ul>
+                <input type="number" min="1" placeholder="Quantity" class="product-box-quantity" onchange="updateQuantity(3, this.value)">
+                <button onclick="addToCart(3)">Add to Cart</button>
+            </div>
+
+            <div class="product-box">
+                <img src="../Assets/ps4controller.jpeg" alt="PS4 Controller">
+                <h3>PlayStation 4 Controller</h3>
+                <p>$9,500.00</p>
+                <ul>
+                    <li>Power/Charge: Internal Battery/Micro USB  </li>
+                    <li>Features: Gyro, TouchPad, Rumble, Bluetooth</li>
+                    <li>Native Connectivity: PS4, Windows, Android/IOS</li>
+                </ul>
+                <input type="number" min="1" placeholder="Quantity" class="product-box-quantity" onchange="updateQuantity(4, this.value)">
+                <button onclick="addToCart(4)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+        <div class="console-section">
+           <center> <div class="console-header">Xbox</div></center>
+            <div class="product-grid">
+                <div class="product-box">
+                    <img src="../Assets/xboxseriesx.jpeg" alt="Series X">
+                    <h3>Xbox Series X</h3>
+                    <p>$80,000.00</p>
+                    <ul>
+                        <li>Storage: 1 TB SSD</li>
+                        <li>Media Type: Dics/Digital</li>
+                        <li>Resolution: 1080P HD, 4K UHD 120FPS</li>
+                    </ul>
+                    <input type="number" min="1" placeholder="Quantity" class="product-box-quantity" onchange="updateQuantity(5, this.value)">
+                    <button onclick="addToCart(5)">Add to Cart</button>
+            </div>
+            
+                <div class="product-box">
+                    <img src="../Assets/xboxseriess.jpeg" alt="Series S">
+                    <h3>Xbox Series S</h3>
+                    <p>$50,000.00</p>
+                    <ul>
+                        <li>Storage: 512 SSD</li>
+                        <li>Media Type: Digital</li>
+                        <li>Resolution: 1080P HD, 1440p (2K) 120FPS</li>
+                    </ul>
+                    <input type="number" min="1" placeholder="Quantity" class="product-box-quantity" onchange="updateQuantity(6, this.value)">
+                    <button onclick="addToCart(6)">Add to Cart</button>
+                </div>
+                <div class="product-box">
+                    <img src="../Assets/xboxcontroller.jpeg" alt="Series Controller">
+                    <h3>Xbox Series X/S Controller</h3>
+                    <p>$12,000.00</p>
+                    <ul>
+                        <li>Power/Charge: AA Batteries/ Charge and Play Kit(Battery Pack)/ USB C  </li>
+                        <li>Features: Rumble, Rumble Triggers, Bluetooth</li>
+                        <li>Native Connectivity: Xbox Series X/S, Xbox One Original/S/X, Windows, Android/IOS</li>
+                    </ul>
+                    <input type="number" min="1" placeholder="Quantity" class="product-box-quantity" onchange="updateQuantity(7, this.value)">
+                    <button onclick="addToCart(7)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="console-section">
+            <center><div class="console-header">Nintendo</div></center>
+            <div class="product-grid">
+                <div class="product-box">
+                    <img src="../Assets/nintendoswitch.jpeg" alt="Nintendo Switch">
+                    <h3>Nintendo Switch</h3>
+                    <p>$45,000.00</p>
+                    <ul>
+                        <li>Storage: 32 GB Internal MicroSD</li>
+                        <li>Media Type: Cartridge/Digital</li>
+                        <li>Resolution: 720P SD via built-in screen, 1080P HD Docked</li>
+                    </ul>
+                    <input type="number" min="1" placeholder="Quantity" class="product-box-quantity" onchange="updateQuantity(8, this.value)">
+                    <button onclick="addToCart(8)">Add to Cart</button>
+                </div>
+            
+                <div class="product-box">
+                    <img src="../Assets/switcholed.jpeg" alt="Switch OLED">
+                    <h3>Nintendo Switch OLED</h3>
+                    <p>$60,000.00</p>
+                    <ul>
+                        <li>Storage: 64 GB Internal MicroSD</li>
+                        <li>Media Type: Cartridge/Digital</li>
+                        <li>Resolution: 720P SD via built-in <u><b>OLED</b></u> screen, 1080P HD Docked</li>
+                    </ul>
+                    <input type="number" min="1" placeholder="Quantity" class="product-box-quantity" onchange="updateQuantity(9, this.value)">
+                    <button onclick="addToCart(9)">Add to Cart</button>
+                </div>
+                <div class="product-box">
+                    <img src="../Assets/joycons.jpeg" alt="Series Controller">
+                    <h3>Nintendo Switch Joycons</h3>
+                    <p>$7,500.00</p>
+                    <ul>
+                        <li>Power/Charge: Internal Battery/ Charging Doc on Console  </li>
+                        <li>Features: Gyro, Accelorometer, IR Motion Camera, Rumble, Bluetooth</li>
+                        <li>Native Connectivity: Nintendo Switch V1/V2, Nintendo Switch OLED</li>
+                    </ul>
+                    <input type="number" min="1" placeholder="Quantity" class="product-box-quantity" onchange="updateQuantity(10, this.value)">
+                    <button onclick="addToCart(10)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="invoice" class="invoice"></div> <!--Invoice(Cart) Section-->
+
+    <div class="checkout-section"> <!--Checkout Section: Checkout, cancel, exit-->
+        <div class="checkout-grid">
+            <button class="checkout-button" onclick="checkOut()">Checkout</button>
+            <button class="cancel-button" onclick="cancelAction()">Cancel</button>
+            <button class="exit-button" onclick="exitAction()">Exit</button>
+        </div>
+    </div><br>
+    
+    <center> <a href="#Top"><font size="5" color="white"><b>Top of the Page</font></a></center><br>
+       
+        <footer> <!--Footer-->
+            <div class="footer-content">
+                <img src="../Assets/Logo.png" alt="Logo" style="max-height: 60px; margin-left: 20px; border-radius: 50px;">
+                <p>&copy; 2024 Game Domain. All rights reserved.</p>
+                <p>Phone: (876) 435-1367</p>
+                <p>Email: <a href="mailto:2206126@utech.edu.jm">2206126@utech.edu.jm</a></p>              
+            </div>
+          </footer>    
+    
+
+</body>
+</html>

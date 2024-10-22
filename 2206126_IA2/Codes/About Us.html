@@ -1,0 +1,156 @@
+<!--Name:Javone-Anthony Gordon-->
+<!--ID: 2206126-->
+<!--Date: Oct 21, 2024-->
+<!--Description: Web Programming Assignment 2 - About Us Page-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Us</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Sets the viewport to the device's width for responsive design -->
+    <style>
+
+        /*Body styles*/
+        body {
+            display: flex;
+            flex-direction: column; 
+            justify-content: flex-start; 
+            align-items: center;            
+            background-color: #f2f2f2;            
+            margin: 0;
+        }
+
+        .content-container { /*Container styles*/
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            width: 80%; 
+            margin-top: 120px; 
+        }
+
+        .content-box {
+            flex: 1; /* This makes both sections take up equal space */
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;            
+            border: solid rgb(42, 124, 211);
+        }
+
+        .additional-info-container { /*Separate container class as to apply different styles from the above classes*/
+            width: auto;
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            border: solid rgb(42, 124, 211);
+            margin-top: 20px; 
+        }
+        
+        /* Media query for smaller screens */
+        @media (max-width: 1000px) {
+            .content-container {
+                flex-direction: column; /* Stack the sections vertically on smaller screens */
+            }
+        }
+
+        /*General global styles*/
+        h1 {
+            color: rgb(42, 124, 211);
+        }
+        h2 {
+            color: rgb(42, 124, 211);
+            font-family: 'Times New Roman', Times, serif;
+        }
+        p {
+            color: #333;
+            border: solid rgb(42, 124, 211);
+            border-radius: 15px;            
+        }
+        ul {
+            color: rgb(42, 124, 211);
+            text-align: left;
+        }
+
+        footer { /*Footer styles*/
+            background-color: rgb(42, 124, 211);  
+            color: #fff;  
+            text-align: center;  
+            padding: 20px;  
+            position: relative;
+            border-radius: 35px;  
+            width: 90%; /*Make the footer stretch to match the other pages as best as possible*/
+            margin: 0 20px;
+        }
+
+        .footer-content p {
+            color: #f2f2f2;
+            margin: 0px;
+        }
+
+        .footer-content a {
+            color: rgb(6, 10, 237); 
+            text-decoration: none;
+        }
+
+        .footer-content a:hover {
+            text-decoration: underline;  /* Underline on hover */
+        }
+
+    </style>
+</head>
+<body style="background-image: url('../Assets/Background2.jpg'); background-size: cover; background-attachment: fixed; margin: 0; padding: 0;"><!--Background image-->
+
+    <div style="background-color: rgba(0, 0, 0, 0.8); padding: 10px; text-align: center; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; height: auto; display: flex; align-items: center; justify-content: space-between; border-radius: 0; flex-wrap: wrap;">
+        
+        <div style="display: flex; align-items: center;"><!--Header-->
+            <img src="../Assets/Logo.png" alt="Logo" style="max-height: 60px; margin-left: 20px; border-radius: 50px;"> 
+            <h1 style="font-size: xx-large; color: white; margin: 0; margin-left: 10px;">GAME DOMAIN</h1>
+        </div>
+
+        <div style="align-items: center;">
+            <a href="Products.html" style="font-size: large; color: rgb(42, 124, 211); text-decoration: none; margin: 30px;"><b>PRODUCTS</b></a>
+            <a href="Invoice.html" style="font-size: large; color: rgb(42, 124, 211); text-decoration: none; margin: 30px;"><b>INVOICE</b></a>
+            <a href="About Us.html" style="font-size: large; color: rgb(42, 124, 211); text-decoration: underline; margin: 0 10px;"><b>ABOUT US</b></a>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <div class="content-box">
+            <h1>Mission Statement</h1>     
+            <p><b>Our goal is to deliver gaming necessities at reasonable and accessible prices, as we believe that enjoyment shouldn't come with an unreasonable price tag.</b></p> 
+        </div>
+
+        <div class="content-box">
+            <h1>Vision Statement</h1>     
+            <p><b>Our vision is to be the ultimate one-stop destination for all gaming needs, where enthusiasts can easily find everything they require for an exceptional gaming experience.</b></p> 
+        </div>
+    </div>
+    
+    <div class="additional-info-container">
+        <h1>About Us</h1>
+        <ul>
+            <li>Name: Javone-Anthony Gordon</li>
+            <li>ID No: 2206126</li>
+            <li>Assignment name: Web Programming Individual Assignment 2</li>
+            <li>Class time: Mondays 5pm to 7pm</li>
+        </ul> 
+        <h2>Contact</h2>
+        <ul>
+            <li>Contact us if you have any queries or questions at <a href="mailto:2206126@utech.edu.jm">2206126@utech.edu.jm</a></li>
+        </ul>
+    </div><br>
+
+    <center> <a href="#Top"><font size="5" color="white"><b>Top of the Page</b></font></a></center><br>
+        
+    <footer> <!--Footer-->
+        <div class="footer-content">
+            <img src="../Assets/Logo.png" alt="Logo" style="max-height: 60px; margin-left: 20px; border-radius: 50px;">
+            <p>&copy; 2024 Game Domain. All rights reserved.</p>
+            <p>Phone: (876) 435-1367</p>
+            <p>Email: <a href="mailto:2206126@utech.edu.jm">2206126@utech.edu.jm</a></p>              
+        </div>
+    </footer>
+
+</body>
+</html>

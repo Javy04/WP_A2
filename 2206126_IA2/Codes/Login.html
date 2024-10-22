@@ -1,0 +1,149 @@
+<!--Name:Javone-Anthony Gordon-->
+<!--ID: 2206126-->
+<!--Date: Oct 18, 2024-->
+<!--Description: Web Programming Assignment 2 - Login Page-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Sets the viewport to the device's width for responsive design -->
+
+    <style> 
+    /*Style for login button*/
+        .loginbutton {
+            background-color: rgb(42, 124, 211);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer; /* Changes cursor to pointer */
+            transition: background-color 0.3s; /* Creates a smooth transition for the colour to change when hovered */
+        }
+
+        .loginbutton:hover {
+            background-color: rgb(62, 144, 231); /* Change to a lighter blue on hover */
+        }
+
+        /* Styles for page footer */
+        footer {
+            background-color: rgb(42, 124, 211);  
+            color: #fff;  
+            text-align: center;  
+            padding: 20px;  
+            position: relative;
+            border-radius: 35px;  
+            width: auto;
+            margin: 0 20px;
+        }
+
+        .footer-content p { 
+            color: #f2f2f2;
+            margin: 0px;
+        }
+
+        .footer-content a { /* Styles for page footer hyperlink */
+            color: rgb(6, 10, 237); 
+            text-decoration: none;
+        }
+
+        .footer-content a:hover {
+            text-decoration: underline;  /* Underline on hover */
+        }
+    </style>
+
+    <script>
+        // Sample username and password
+        const Sample_Username = "Kratos Spiderman";
+        const Sample_Password = "Ilovegames";
+        let loginAttempts = 0;
+
+        // Function to validate the form
+        function validateLogin(event) {
+            const Username = document.forms["Login"]["tb1"].value; 
+            const Password = document.forms["Login"]["tb3"].value;
+
+            // Check if fields are filled
+            if (Username === "" || Password === "") {
+                alert("All fields are required!");
+                event.preventDefault(); // Prevent form from being submitted 
+                return false;
+            }
+
+            // Validate credentials
+            if (Username === Sample_Username && Password === Sample_Password) {
+                // Successful login
+                return true; // Allow form submission
+            } else {
+                loginAttempts++; // Increment login attempt counter
+                alert("Invalid username or password.");
+                event.preventDefault(); // Prevent form from being submitted
+                
+                // Check if attempts exceed 3 and redirect to an error page
+                if (loginAttempts >= 3) {
+                    window.location.href = "Error.html"; // Redirect to error page
+                }
+                return false;
+            }
+        }
+        
+        // Function to alert message when accessing other pages
+        function alertLoginRequired(event) {
+            alert("Please login to get full access to the site.");
+            event.preventDefault(); // Prevent the default action of the link
+        }
+    </script>
+</head>
+<body style="background-image: url('../Assets/Background2.jpg'); background-size: cover; background-attachment: fixed; margin: 0; padding: 0;"> <!--Background image-->
+
+    <div style="background-color: rgba(0, 0, 0, 0.8); padding: 10px; text-align: center; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; height: auto; display: flex; align-items: center; justify-content: space-between; border-radius: 0; flex-wrap: wrap;">
+        
+        <div style="display: flex; align-items: center;"> <!--Header-->
+            <img src="../Assets/Logo.png" alt="Logo" style="max-height: 60px; margin-left: 20px; border-radius: 50px;"> 
+            <h1 style="font-size: xx-large; color: white; margin: 0; margin-left: 10px;">GAME DOMAIN</h1>
+        </div>
+
+        <div style="align-items: center;"> <!--Headings - unaccessible to user unless they login (or realistically just open the tab on a new page)-->
+            <a href="Products.html" onclick="alertLoginRequired(event)" style="font-size: large; color: rgb(42, 124, 211); text-decoration: none; margin: 30px;"><b>PRODUCTS</b></a>
+            <a href="Invoice.html" onclick="alertLoginRequired(event)" style="font-size: large; color: rgb(42, 124, 211); text-decoration: none; margin: 30px;"><b>INVOICE</b></a>
+            <a href="About Us.html" onclick="alertLoginRequired(event)" style="font-size: large; color: rgb(42, 124, 211); text-decoration: none; margin: 0 10px;"><b>ABOUT US</b></a>
+        </div>
+    </div>
+
+    <div style="margin-top: 30px; padding: 20px;"></div>
+    
+    <div style="margin-top: 60px; text-align: center; color: white;"> <!--Login form-->
+        <table style="margin: auto; background-color: white; border-radius: 15px; padding: 15px; width: 300px; height: 400px;">
+            <tr>
+                <td>
+                    <fieldset>                       
+                        <form name="Login" action="Products.html" method="get" onsubmit="return validateLogin(event)"> 
+                            <h1 style="color: rgb(42, 124, 211)"><b>Login</b></h1>
+
+                            <legend style="color: rgb(42, 124, 211);"><b>Username: </b></legend>
+                            <input type="text" name="tb1" maxlength="25" minlength="6" placeholder="Enter username - Kratos Spiderman" style="color: black; width: 100%;"> <br><br>
+                            
+                            <legend style="color: rgb(42, 124, 211);"><b>Password</b></legend>
+                            <input type="password" name="tb3" minlength="8" placeholder="Enter password - Ilovegames" style="color: black; width: 100%;"/> <br><br>
+
+                            <button type="submit" class="loginbutton">Login</button>
+                        </form>
+                    </fieldset> 
+                </td>
+            </tr>
+        </table>
+    </div><br>
+
+    <center> <a href="#Top"><font size="5" color="white"><b>Top of the Page</font></a></center><br>
+
+    <footer>
+        <div class="footer-content"> <!--footer-->
+            <img src="../Assets/Logo.png" alt="Logo" style="max-height: 60px; margin-left: 20px; border-radius: 50px;">
+            <p>&copy; 2024 Game Domain. All rights reserved.</p>
+            <p>Phone: (876) 435-1367</p>
+            <p>Email: <a href="mailto:2206126@utech.edu.jm">2206126@utech.edu.jm</a></p>              
+        </div>
+      </footer>   
+
+</body>
+</html>

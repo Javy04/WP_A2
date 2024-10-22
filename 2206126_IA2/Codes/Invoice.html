@@ -1,0 +1,181 @@
+<!--Name:Javone-Anthony Gordon-->
+<!--ID: 2206126-->
+<!--Date: Oct 20, 2024-->
+<!--Description: Web Programming Assignment 2 - Invoice Page-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Sets the viewport to the device's width for responsive design -->
+    <style>
+        
+        .invoice { /* Invoice Styles*/
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 50px;
+            margin: 20px;
+            border: solid rgb(42, 124, 211);
+            text-align: center;
+            }
+        h1.set{ /* Heading 1 Styles*/
+            font-size: xx-large;
+            color: rgb(42, 124, 211);
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 10px ;
+            border: 5px solid  rgb(42, 124, 211);
+            background-color: white;
+            padding: 20px;
+            max-width: 150px; 
+        }
+        .cancel-button { /* Cancel Button Styles*/
+            background-color: white; 
+            color: black;
+            border: 1px solid  rgb(42, 124, 211); 
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        .exit-button { /* Exit button Styles*/
+            background-color: red; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }        
+
+        .cancel-button:hover { /* button hover Styles*/
+            background-color: lightgray;
+        }
+
+        .exit-button:hover {
+            background-color: darkred;
+        }
+        .button-section {  /* button Styles*/
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 30px;
+            margin: 40px;
+            border: solid  black;           
+        }
+        .button-grid {
+            display:grid;
+            grid-template-columns: repeat(2, 1fr); /* Three columns */
+            grid-gap: 20px; /* Gap between the boxes */            
+        }
+
+        footer { /* Footer Styles*/
+            background-color: rgb(42, 124, 211);  
+            color: #fff;  
+            text-align: center;  
+            padding: 20px;  
+            position: relative;
+            border-radius: 35px;  
+            width: auto;
+            margin: 0 20px;
+            
+        }
+
+        .footer-content p {
+            color: #f2f2f2;
+            margin: 0px;
+        }
+
+        .footer-content a {
+            color: rgb(6, 10, 237);   
+            text-decoration: none;
+        }
+
+        .footer-content a:hover {
+            text-decoration: underline;  /* Underline on hover */
+        }
+    </style>
+    <script>
+
+        function cancelAction()//function to clear the cart
+        {
+            if (confirm("Do you want to clear the cart?"))
+            {                
+                // Clear the invoice data from local storage
+                localStorage.removeItem("invoiceData");
+                updateInvoice();// Update the displayed invoice
+                alert('The cart has been cleared!');                 
+            }
+        }
+
+        function exitAction() { //function to exit the page
+            const confirmation = confirm("You will redirected to the Products page and the cart will be cleared if you exit!");
+        if (confirmation) {
+            localStorage.removeItem("invoiceData");            
+            window.location.href = 'Products.html'; //redirect the user to products page if clicked
+        }
+        }
+        
+
+        function updateInvoice() { //function to update the invoice
+            const invoiceData = localStorage.getItem("invoiceData");
+            document.getElementById("cart-invoice").innerHTML = invoiceData || "<p>No items in the cart.</p>";
+            // Updates the cart-invoice section with invoiceData, or shows "No items in the cart" if there is no data
+        }
+
+        // Retrieve and display the invoice data from local storage when the page loads
+        window.onload = function() {
+            updateInvoice(); // Call the updateInvoice function
+        }
+
+    </script>
+</head>
+<body style="background-image: url('../Assets/Background2.jpg'); background-size: cover; background-attachment: fixed; margin: 0; padding: 0;">
+
+    <div style="background-color: rgba(0, 0, 0, 0.8); padding: 10px; text-align: center; position: fixed; width: 100%; top: 0; left: 0; z-index: 1000; height: auto; display: flex; align-items: center; justify-content: space-between; border-radius: 0; flex-wrap: wrap;">
+        
+        <div style="display: flex; align-items: center;">
+            <img src="../Assets/Logo.png" alt="Logo" style="max-height: 60px; margin-left: 20px; border-radius: 50px;"> 
+            <h1 style="font-size: xx-large; color: white; margin: 0; margin-left: 10px;">GAME DOMAIN</h1>
+        </div>
+
+        <div style="align-items: center;">
+            <a href="Products.html" style="font-size: large; color: rgb(42, 124, 211); text-decoration: none; margin: 30px;"><b>PRODUCTS</b></a>
+            <a href="Invoice.html" style="font-size: large; color: rgb(42, 124, 211); text-decoration: underline; margin: 30px;"><b>INVOICE</b></a>
+            <a href="About Us.html" style="font-size: large; color: rgb(42, 124, 211); text-decoration: none; margin: 0 10px;"><b>ABOUT US</b></a>
+        </div>
+    </div>
+    
+    <div style="margin-top: 10px; padding: 50px;"></div>
+
+    <center><h1 class="set">INVOICE</h1></center> <!--Heading above cart-->
+    <div id="cart-invoice" class="invoice"></div>
+
+    <div class="button-section">
+        <div class="button-grid">                     
+            <button class="cancel-button" onclick="cancelAction()">Cancel</button>
+            <button class="exit-button" onclick="exitAction()">Exit</button>
+        </div>
+    </div><br>
+
+    <script>
+        // Retrieve and display the invoice data from local storage
+        window.onload = function() {
+            const invoiceData = localStorage.getItem("invoiceData");
+            document.getElementById("cart-invoice").innerHTML = invoiceData || "<p>No items in the cart.</p>";
+            // Updates the cart-invoice section with invoiceData, or shows "No items in the cart" if there is no data
+
+        }
+    </script>
+
+    <center> <a href="#Top"><font size="5" color="white"><b>Top of the Page</font></a></center><br>
+        
+    <footer>
+        <div class="footer-content"> <!--footer-->
+            <img src="../Assets/Logo.png" alt="Logo" style="max-height: 60px; margin-left: 20px; border-radius: 50px;">
+            <p>&copy; 2024 Game Domain. All rights reserved.</p>
+            <p>Phone: (876) 435-1367</p>
+            <p>Email: <a href="mailto:2206126@utech.edu.jm">2206126@utech.edu.jm</a></p>              
+        </div>
+      </footer>
+
+</body>
+</html>
